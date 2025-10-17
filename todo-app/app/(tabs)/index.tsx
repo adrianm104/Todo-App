@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function CompletedTodosScreen() {
+export default function TodosScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Completed Todos</Text>
+      <Text style={styles.text}>Todos Screen</Text>
     </View>
   );
 }
@@ -20,3 +20,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
