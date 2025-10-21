@@ -1,23 +1,55 @@
 import { View, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTodos } from '@/hooks/useTodos';
+import { TodoList } from '@/components/todo/TodoList';
+import { AddTodoForm } from '@/components/todo/AddTodoForm';
 
 export default function TodosScreen() {
+  const { activeTodos, completedTodos, addTodo, toggleTodo, deleteTodo, editTodo } = useTodos();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Todos Screen</Text>
-    </View>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <Text style={styles.title}>My Todos</Text>
+        <Text style={styles.subtitle}>
+          {activeTodos.length} active, {completedTodos.length} completed
+        </Text>
+      </View>
+      <AddTodoForm onAddTodo={addTodo} />
+      <TodoList 
+        todos={activeTodos} 
+        onToggle={toggleTodo} 
+        onDelete={deleteTodo}
+        onEdit={editTodo}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
   },
-  text: {
-    fontSize: 20,
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    backgroundColor: '#fff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e0e0e0',
+  },
+  title: {
+    fontSize: 28,
     fontWeight: 'bold',
+    color: '#333',
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#666',
   },
 });
+
 
