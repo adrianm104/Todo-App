@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTodos } from '@/hooks/useTodos';
 import { TodoList } from '@/components/todo/TodoList';
 import { AddTodoForm } from '@/components/todo/AddTodoForm';
+import { useTodoContext } from '@/contexts/TodoContext';
 
 export default function TodosScreen() {
-  const { activeTodos, completedTodos, addTodo, toggleTodo, deleteTodo, editTodo } = useTodos();
+  const { activeTodos, completedTodos, addTodo, toggleTodo, deleteTodo, editTodo } = useTodoContext();
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>

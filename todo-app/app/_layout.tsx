@@ -2,6 +2,8 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
+import { TodoProvider } from '@/contexts/TodoContext';
+import {UconSymbol} from '@/components/ui/icon-symbol';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
