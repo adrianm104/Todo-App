@@ -14,9 +14,9 @@ export default function ProfileScreen() {
       <View style={styles.profileContainer}>
         <Text style={styles.name}>Adrian Macias</Text>
         <Text style={styles.email}>adrianmacias255.am@gmail.com</Text>
-        <Text style={styles.bio}> Greetings Everyone! {'\n'} I am rookie React Native developer, making this app as a learning project to improve my skills. I am a current student at the University of Texas at Arlington. 
-          {'\n'} I am actively pursuing a Bachelors degree in Computer Science. My interests include web development, mobile development. {'\n'}  My goal is to become a software engineer and work on building web and mobile applications and maintaining
-          good quality code. {'\n'} This is also my first time using React Native and Expo, so I am learning as I go, may add more features to the app as I learn more.
+        <Text style={styles.bio}> Greetings Everyone! {'\n'} {'\n'} I am Adrian Macias, a rookie React Native developer, making this app as a learning project to improve my skills. I am a current student at the University of Texas at Arlington. 
+          I am actively pursuing a Bachelors degree in Computer Science. My interests include web development, mobile development. My goal is to become a software engineer and work on building web and mobile applications and maintaining
+          good quality code. This is also my first time using React Native and Expo, so I am learning as I go, may add more features to the app as I learn more.
         </Text>
       </View>
 
@@ -67,22 +67,23 @@ const styles = StyleSheet.create({
   bio: {
     fontSize: 14,
     color: '#000',
-    marginBottom: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-  },
+    marginBottom: 130,
+    textAlign: 'justify',
+    paddingHorizontal: 0,
+    width: '90%',
+    },
   name: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#000',
-    marginBottom: 8,
+    marginBottom: 1,
     marginHorizontal: 20,
   },
   email: {
     fontSize: 14,
+    fontStyle: 'italic',
     color: '#000',
-    marginBottom: 8,
+    marginBottom: 50,
     marginHorizontal: 20,
     textAlign: 'center',
   },
@@ -93,8 +94,10 @@ const styles = StyleSheet.create({
   },
   profilePicture: {
     alignSelf: 'center',
-    justifySelf: 'center',
     width: 200,
     height: 200,
+    borderWidth: 3,
+    borderRadius: 100,
+    marginBottom: 10,
   },
 });
