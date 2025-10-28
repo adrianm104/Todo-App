@@ -5,7 +5,7 @@ import { AddTodoForm } from '@/components/todo/AddTodoForm';
 import { useTodoContext } from '@/contexts/TodoContext';
 
 export default function TodosScreen() {
-  const { activeTodos, completedTodos, addTodo, toggleTodo, deleteTodo, editTodo } = useTodoContext();
+  const { activeTodos, completedTodos, addTodo, toggleTodo, deleteTodo } = useTodoContext();
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -20,7 +20,6 @@ export default function TodosScreen() {
         todos={activeTodos} 
         onToggle={toggleTodo} 
         onDelete={deleteTodo}
-        onEdit={editTodo}
       />
     </SafeAreaView>
   );

@@ -6,10 +6,9 @@ interface TodoListProps {
     todos: Todo[];
     onToggle: (id: string) => void;
     onDelete: (id: string) => void;
-    onEdit: (id: string, text: string) => void;
 }
 
-export function TodoList({ todos, onToggle, onDelete, onEdit }: TodoListProps) {
+export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
     if (todos.length === 0) {
         return (
             <View style={styles.emptyContainer}>
@@ -28,7 +27,6 @@ export function TodoList({ todos, onToggle, onDelete, onEdit }: TodoListProps) {
                     todo={item} 
                     onToggle={onToggle} 
                     onDelete={onDelete}
-                    onEdit={onEdit}
                 />
             )}
             style={styles.list}

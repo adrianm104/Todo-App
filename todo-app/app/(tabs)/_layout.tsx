@@ -22,7 +22,7 @@ export default function TabLayout() {
           name="index"
           options={{
             title: 'Todos',
-            tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+            tabBarIcon: ({ color }) => <IconSymbol size={28} name="list.bullet.rectangle.portrait.fill" color={color} />,
           }}
         />
         <Tabs.Screen

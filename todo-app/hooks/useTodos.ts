@@ -35,13 +35,6 @@ export function useTodos(){
         setTodos(prevTodo => prevTodo.filter(todo => todo.id !== id));
     };
 
-    const editTodo = (id: string, text: string) => {
-        setTodos(prevTodo => 
-            prevTodo.map(todo => 
-                todo.id === id ? { ...todo, text: text.trim() } : todo
-            )
-        );
-    };
 
     const activeTodos = todos.filter(todo => !todo.completed);
     const completedTodos = todos.filter(todo => todo.completed);
@@ -51,7 +44,6 @@ export function useTodos(){
         addTodo,
         toggleTodo,
         deleteTodo,
-        editTodo,
         activeTodos,
         completedTodos,
     };

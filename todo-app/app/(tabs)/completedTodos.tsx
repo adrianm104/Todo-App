@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTodoContext } from '@/contexts/TodoContext';
 
 export default function CompletedTodosScreen() {
-  const { completedTodos, toggleTodo, deleteTodo, editTodo } = useTodoContext();
+  const { completedTodos, toggleTodo, deleteTodo } = useTodoContext();
   
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -22,7 +22,6 @@ export default function CompletedTodosScreen() {
           todos={completedTodos}
           onToggle={toggleTodo}
           onDelete={deleteTodo}
-          onEdit={editTodo}
         />
       )}
     </SafeAreaView>

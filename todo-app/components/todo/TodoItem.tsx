@@ -5,7 +5,6 @@ interface TodoItemProps {
     todo: Todo;
     onToggle: (id: string) => void;
     onDelete: (id: string) => void;
-    onEdit: (id: string, text: string) => void;
 }
 
 export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
