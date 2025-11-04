@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRealm } from '@/contexts/RealmContext';
+import { TodoSchema } from '@/models/TodoSchema';
 
 export interface Todo {
     id: string;
@@ -9,9 +11,25 @@ export interface Todo {
 
 export function useTodos(){
     const [todos, setTodos] = useState<Todo[]>([]);
+    const { realm , isRealmReady} = useRealm();
 
     const addTodo = (text: string) => {
         if (text.trim() === '') return;
+
+    useEffect(() => {
+        if (isReal && realm) {
+            const todos = realm.objects(TodoSchema);
+            setTodos(todos.map(todo => ({
+                id: todo.id,
+                text: todo.text,
+                completed: todo.completed,
+                createdAt: todo.createdAt,
+            }));
+            setTodos(todosArray);
+        }
+    }, 
+    
+    loadTodos();
 
         const newTodo: Todo = {
             id: Date.now().toString(),
@@ -32,6 +50,7 @@ export function useTodos(){
     };
 
     const deleteTodo = (id: string) => {
+        if (!real)
         setTodos(prevTodo => prevTodo.filter(todo => todo.id !== id));
     };
 

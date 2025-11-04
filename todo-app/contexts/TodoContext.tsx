@@ -1,6 +1,7 @@
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext, ReactNode, useEffect } from 'react';
 import { useTodos } from '@/hooks/useTodos';
 import type { Todo } from '@/hooks/useTodos';
+import { RealmProvider } from '@/contexts/RealmContext';
 
 interface TodoContextType {
   todos: Todo[];
