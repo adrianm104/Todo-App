@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useRealm } from '@/contexts/RealmContext';
-import { TodoSchema } from '@/models/TodoSchema';
+import { useRealm } from "@/contexts/RealmContext";
+import { TodoSchema } from "@/models/TodoSchema";
 
 export interface Todo {
     id: string;
@@ -10,50 +10,71 @@ export interface Todo {
 }
 
 export function useTodos(){
+    const { realm, isRealmReady } = useRealm();
     const [todos, setTodos] = useState<Todo[]>([]);
-    const { realm , isRealmReady} = useRealm();
-
-    const addTodo = (text: string) => {
-        if (text.trim() === '') return;
 
     useEffect(() => {
-        if (isReal && realm) {
-            const todos = realm.objects(TodoSchema);
-            setTodos(todos.map(todo => ({
+        if (!realm || !isRealmReady) return;
+
+        const loadTodos = () => {
+            const realmTodos = realm.objects<TodoSchema>('Todo').sorted('createdAt', true);
+            const todosArray = Array.from(realmTodos).map(todo => ({
                 id: todo.id,
                 text: todo.text,
                 completed: todo.completed,
                 createdAt: todo.createdAt,
             }));
             setTodos(todosArray);
-        }
-    }, 
-    
-    loadTodos();
-
-        const newTodo: Todo = {
-            id: Date.now().toString(),
-            text: text.trim(),
-            completed: false,
-            createdAt: new Date(),
         };
 
-        setTodos(prevTodo => [newTodo, ...prevTodo]);
+        loadTodos();
+
+        // Set up listener for real-time updates
+        const listener = () => {
+            loadTodos();
+        };
+
+        realm.addListener('change', listener);
+
+        return () => {
+            realm.removeListener('change', listener);
+        };
+    }, [realm, isRealmReady]);
+
+    const addTodo = (text: string) => {
+        if (text.trim() === '' || !realm) return;
+
+        realm.write(() => {
+            realm.create('Todo', {
+                id: Date.now().toString(),
+                text: text.trim(),
+                completed: false,
+                createdAt: new Date(),
+            });
+        });
     };
 
     const toggleTodo = (id: string) => {
-        setTodos(prevTodo => 
-            prevTodo.map(todo => 
-                todo.id === id ? { ...todo, completed: !todo.completed } : todo
-            )
-        );
+        if (!realm) return;
+
+        realm.write(() => {
+            const todo = realm.objectForPrimaryKey<TodoSchema>('Todo', id);
+            if (todo) {
+                todo.completed = !todo.completed;
+            }
+        });
     };
 
     const deleteTodo = (id: string) => {
-        if (!real)
-        setTodos(prevTodo => prevTodo.filter(todo => todo.id !== id));
-    };
+        if (!realm) return;
 
+        realm.write(() => {
+            const todo = realm.objectForPrimaryKey<TodoSchema>('Todo', id);
+            if (todo) {
+                realm.delete(todo);
+            }
+        });
+    };
 
     const activeTodos = todos.filter(todo => !todo.completed);
     const completedTodos = todos.filter(todo => todo.completed);

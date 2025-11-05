@@ -19,7 +19,7 @@ export class TodoSchema extends Realm.Object {
   };
 }
 
-export const realmConfig = Realm.Configuration = {
+export const realmConfig: Realm.Configuration = {
 schema: [TodoSchema],
 schemaVersion: 1,
 };

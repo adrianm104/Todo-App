@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { Realm } from 'realm';
 import { realmConfig } from '@/models/TodoSchema';
 
@@ -12,23 +12,25 @@ const RealmContext = createContext<RealmContextType | undefined>(undefined);
 export function RealmProvider({ children }: { children: React.ReactNode }) {
     const [realm, setRealm] = useState<Realm | null>(null);
     const [isRealmReady, setIsRealmReady] = useState(false);
-  
+    const realmRef = useRef<Realm | null>(null);
+
     useEffect(() => {
       const initializeRealm = async () => {
         try {
           const realmInstance = await Realm.open(realmConfig);
+          realmRef.current = realmInstance;
           setRealm(realmInstance);
           setIsRealmReady(true);
         } catch (error) {
           console.error('Failed to open Realm:', error);
         }
       };
-  
+
       initializeRealm();
-  
+
       return () => {
-        if (realm) {
-          realm.close();
+        if (realmRef.current) {
+          realmRef.current.close();
         }
       };
     }, []);

@@ -1,7 +1,7 @@
-import { createContext, useContext, ReactNode, useEffect } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 import { useTodos } from '@/hooks/useTodos';
 import type { Todo } from '@/hooks/useTodos';
-import { RealmProvider } from '@/contexts/RealmContext';
+import { useRealm } from '@/contexts/RealmContext';
 
 interface TodoContextType {
   todos: Todo[];
@@ -15,8 +15,13 @@ interface TodoContextType {
 const TodoContext = createContext<TodoContextType | undefined>(undefined);
 
 export function TodoProvider({ children }: { children: ReactNode }) {
+  const { isRealmReady } = useRealm();
   const todoData = useTodos();
-  
+
+  if (!isRealmReady) {
+    return null; 
+  }
+
   return (
     <TodoContext.Provider value={todoData}>
       {children}
