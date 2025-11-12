@@ -1,6 +1,7 @@
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { TodoItem } from './TodoItem';
 import { Todo } from '@/hooks/useTodos';
+import { isTodoListEmpty } from '@/utils/todoDomain';
 
 interface TodoListProps {
     todos: Todo[];
@@ -9,7 +10,7 @@ interface TodoListProps {
 }
 
 export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
-    if (todos.length === 0) {
+    if (isTodoListEmpty(todos)) {
         return (
             <View style={styles.emptyContainer}>
                 <Text style={styles.emptyText}>No todos yet!</Text>

@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Todo } from '@/hooks/useTodos';
+import { isTodoCompleted } from '@/utils/todoDomain';
 
 interface TodoItemProps {
     todo: Todo;
@@ -8,18 +9,20 @@ interface TodoItemProps {
 }
 
 export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
+    const completed = isTodoCompleted(todo);
+    
     return (
         <View style={styles.container}>
             <TouchableOpacity 
                 style={styles.checkboxContainer} 
                 onPress={() => onToggle(todo.id)}
             >
-                <View style={[styles.checkbox, todo.completed && styles.checkboxChecked]}>
+                <View style={[styles.checkbox, completed && styles.checkboxChecked]}>
                     {todo.completed && <Text style={styles.checkmark}>✓</Text>}
                 </View>
             </TouchableOpacity>
 
-            <Text style={[styles.text, todo.completed && styles.textCompleted]}>
+            <Text style={[styles.text, completed && styles.textCompleted]}>
                 {todo.text}
             </Text>
 

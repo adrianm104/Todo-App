@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRealm } from "@/contexts/RealmContext";
 import { TodoSchema } from "@/models/TodoSchema";
+import { isValidTodoText, isTodoActive, isTodoCompleted } from "@/utils/todoDomain";
+
 
 export interface Todo {
     id: string;
@@ -42,7 +44,7 @@ export function useTodos(){
     }, [realm, isRealmReady]);
 
     const addTodo = (text: string) => {
-        if (text.trim() === '' || !realm) return;
+        if (!isValidTodoText(text) || !realm) return;
 
         realm.write(() => {
             realm.create('Todo', {
@@ -76,8 +78,8 @@ export function useTodos(){
         });
     };
 
-    const activeTodos = todos.filter(todo => !todo.completed);
-    const completedTodos = todos.filter(todo => todo.completed);
+    const activeTodos = todos.filter(isTodoActive);
+    const completedTodos = todos.filter(isTodoCompleted);
 
     return {
         todos,

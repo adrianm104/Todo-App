@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { isValidTodoText } from '@/utils/todoDomain';
 
 interface AddTodoFormProps {
     onAddTodo: (text: string) => void;
@@ -14,6 +15,8 @@ export function AddTodoForm({ onAddTodo }: AddTodoFormProps) {
             setText('');
         }
     };
+
+    const isTextValid = isValidTodoText(text);
 
     return (
         <KeyboardAvoidingView 
@@ -30,7 +33,7 @@ export function AddTodoForm({ onAddTodo }: AddTodoFormProps) {
                     returnKeyType="done"
                 />
                 <TouchableOpacity 
-                    style={[styles.addButton, !text.trim() && styles.addButtonDisabled]}
+                    style={[styles.addButton, !isTextValid && styles.addButtonDisabled]}
                     onPress={handleAddTodo}
                     disabled={!text.trim()}
                 >
