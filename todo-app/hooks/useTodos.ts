@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRealm } from "@/contexts/RealmContext";
 import { TodoSchema } from "@/models/TodoSchema";
-import { isValidTodoText, isTodoActive, isTodoCompleted } from "@/utils/todoDomain";
+import { isValidTodoText, isTodoActive, isTodoCompleted } from "@/components/ui/utils/todoDomain";
 
 
 export interface Todo {
@@ -81,7 +81,7 @@ export function useTodos(){
             realm.removeListener('change', listener);
         };
     }, [realm, isRealmReady]);
-    
+
     return {
         todos,
         addTodo,

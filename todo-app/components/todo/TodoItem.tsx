@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Todo } from '@/hooks/useTodos';
-import { isTodoCompleted } from '@/utils/todoDomain';
+import { isTodoCompleted } from '@/components/ui/utils/todoDomain';
 
 interface TodoItemProps {
     todo: Todo;

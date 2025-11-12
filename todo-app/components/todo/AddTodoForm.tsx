@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
-import { isValidTodoText } from '@/utils/todoDomain';
+import { isValidTodoText } from '@/components/ui/utils/todoDomain';
 
 interface AddTodoFormProps {
     onAddTodo: (text: string) => void;

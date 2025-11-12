@@ -1,7 +1,7 @@
 import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { TodoItem } from './TodoItem';
 import { Todo } from '@/hooks/useTodos';
-import { isTodoListEmpty } from '@/utils/todoDomain';
+import { isTodoListEmpty } from '@/components/ui/utils/todoDomain';
 
 interface TodoListProps {
     todos: Todo[];

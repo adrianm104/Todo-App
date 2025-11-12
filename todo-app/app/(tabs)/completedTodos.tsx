@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { TodoList } from '@/components/todo/TodoList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTodoContext } from '@/contexts/TodoContext';
-import { isTodoListEmpty } from '@/utils/todoDomain';
+import { isTodoListEmpty } from '@/components/ui/utils/todoDomain';
 
 export default function CompletedTodosScreen() {
   const { completedTodos, toggleTodo, deleteTodo } = useTodoContext();
