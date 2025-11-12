@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { View, TextInput, TouchableOpacity, Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { isValidTodoText } from '@/utils/todoDomain';
 
@@ -9,14 +9,14 @@ interface AddTodoFormProps {
 export function AddTodoForm({ onAddTodo }: AddTodoFormProps) {
     const [text, setText] = useState('');
 
-    const handleAddTodo = () => {
+    const handleAddTodo = useCallback(() => {
         if (text.trim() !== '') {
             onAddTodo(text);
             setText('');
         }
-    };
+    }, [text, onAddTodo]);
 
-    const isTextValid = isValidTodoText(text);
+    const isTextValid = useMemo(() => isValidTodoText(text), [text]);
 
     return (
         <KeyboardAvoidingView 

@@ -15,33 +15,6 @@ export function useTodos(){
     const { realm, isRealmReady } = useRealm();
     const [todos, setTodos] = useState<Todo[]>([]);
 
-    useEffect(() => {
-        if (!realm || !isRealmReady) return;
-
-        const loadTodos = () => {
-            const realmTodos = realm.objects<TodoSchema>('Todo').sorted('createdAt', true);
-            const todosArray = Array.from(realmTodos).map(todo => ({
-                id: todo.id,
-                text: todo.text,
-                completed: todo.completed,
-                createdAt: todo.createdAt,
-            }));
-            setTodos(todosArray);
-        };
-
-        loadTodos();
-
-        // Set up listener for real-time updates
-        const listener = () => {
-            loadTodos();
-        };
-
-        realm.addListener('change', listener);
-
-        return () => {
-            realm.removeListener('change', listener);
-        };
-    }, [realm, isRealmReady]);
 
     const addTodo = (text: string) => {
         if (!isValidTodoText(text) || !realm) return;
@@ -81,6 +54,34 @@ export function useTodos(){
     const activeTodos = todos.filter(isTodoActive);
     const completedTodos = todos.filter(isTodoCompleted);
 
+    useEffect(() => {
+        if (!realm || !isRealmReady) return;
+
+        const loadTodos = () => {
+            const realmTodos = realm.objects<TodoSchema>('Todo').sorted('createdAt', true);
+            const todosArray = Array.from(realmTodos).map(todo => ({
+                id: todo.id,
+                text: todo.text,
+                completed: todo.completed,
+                createdAt: todo.createdAt,
+            }));
+            setTodos(todosArray);
+        };
+
+        loadTodos();
+
+        // Set up listener for real-time updates
+        const listener = () => {
+            loadTodos();
+        };
+
+        realm.addListener('change', listener);
+
+        return () => {
+            realm.removeListener('change', listener);
+        };
+    }, [realm, isRealmReady]);
+    
     return {
         todos,
         addTodo,
