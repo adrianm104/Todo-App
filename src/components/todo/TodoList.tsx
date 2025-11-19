@@ -3,6 +3,29 @@ import { TodoItem } from './TodoItem';
 import { Todo } from '@/hooks/useTodos';
 import { isTodoListEmpty } from '@/components/ui/utils/todoDomain';
 
+
+const styles = StyleSheet.create({
+    list: {
+        flex: 1,
+    },
+    emptyContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 32,
+    },
+    emptyText: {
+        fontSize: 20,
+        fontWeight: '600',
+        color: '#999',
+        marginBottom: 8,
+    },
+    emptySubtext: {
+        fontSize: 14,
+        color: '#ccc',
+    },
+});
+
 interface TodoListProps {
     todos: Todo[];
     onToggle: (id: string) => void;
@@ -34,26 +57,4 @@ export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
         />
     );
 }
-
-const styles = StyleSheet.create({
-    list: {
-        flex: 1,
-    },
-    emptyContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 32,
-    },
-    emptyText: {
-        fontSize: 20,
-        fontWeight: '600',
-        color: '#999',
-        marginBottom: 8,
-    },
-    emptySubtext: {
-        fontSize: 14,
-        color: '#ccc',
-    },
-});
 
