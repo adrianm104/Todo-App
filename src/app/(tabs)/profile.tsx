@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 20,
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   bio: {
     fontSize: 14,
     color: '#000',
-    marginBottom: 130,
+    marginBottom: 30,
     textAlign: 'justify',
     paddingHorizontal: 0,
     width: '90%',
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderWidth: 3,
     borderRadius: 100,
-    marginBottom: 10,
+    marginBottom: 20,
   },
 });
 

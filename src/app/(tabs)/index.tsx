@@ -1,29 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { TodoList } from '@/components/todo/TodoList';
-import { AddTodoForm } from '@/components/todo/AddTodoForm';
+import { TodoList } from '@/components/Todo/TodoList';
+import { AddTodoForm } from '@/components/Todo/AddTodoForm';
 import { useTodoContext } from '@/contexts/TodoContext';
 
-export default function TodosScreen() {
-  const { activeTodos, completedTodos, addTodo, toggleTodo, deleteTodo } = useTodoContext();
-
-  return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <Text style={styles.title}>My Todos</Text>
-        <Text style={styles.subtitle}>
-          {activeTodos.length} active, {completedTodos.length} completed
-        </Text>
-      </View>
-      <AddTodoForm onAddTodo={addTodo} />
-      <TodoList 
-        todos={activeTodos} 
-        onToggle={toggleTodo} 
-        onDelete={deleteTodo}
-      />
-    </SafeAreaView>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -50,5 +30,28 @@ const styles = StyleSheet.create({
     color: '#666',
   },
 });
+
+
+
+export default function TodosScreen() {
+  const { activeTodos, completedTodos, addTodo, toggleTodo, deleteTodo } = useTodoContext();
+
+  return (
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <Text style={styles.title}>My Todos</Text>
+        <Text style={styles.subtitle}>
+          {activeTodos.length} active, {completedTodos.length} completed
+        </Text>
+      </View>
+      <AddTodoForm onAddTodo={addTodo} />
+      <TodoList 
+        todos={activeTodos} 
+        onToggle={toggleTodo} 
+        onDelete={deleteTodo}
+      />
+    </SafeAreaView>
+  );
+}
 
 

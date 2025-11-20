@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { RealmProvider } from '@/contexts/RealmContext';
+import { TodoProvider } from '@/contexts/TodoContext';
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -14,13 +15,15 @@ export default function RootLayout() {
 
   return (
     <RealmProvider>
-      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <TodoProvider>
+       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         </Stack>
         <StatusBar style="auto" />
-      </ThemeProvider>
+       </ThemeProvider>
+      </TodoProvider>
     </RealmProvider>
   );
 }

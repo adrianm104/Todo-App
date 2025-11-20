@@ -1,33 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native';
-import { TodoList } from '@/components/todo/TodoList';
+import { TodoList } from '@/components/Todo/TodoList';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTodoContext } from '@/contexts/TodoContext';
 import { isTodoListEmpty } from '@/components/ui/utils/todoDomain';
-
-export default function CompletedTodosScreen() {
-  const { completedTodos, toggleTodo, deleteTodo } = useTodoContext();
-  
-  return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Completed Todos</Text>
-        <Text style={styles.subtitle}>{completedTodos.length} completed</Text>
-      </View>
-      {isTodoListEmpty(completedTodos) ? (
-        <View style={styles.emptyContainer}>
-          <Text style={styles.emptyText}>No completed todos yet!</Text>
-          <Text style={styles.emptySubtext}>Check off some todos to see them here</Text>
-        </View>
-      ) : (
-        <TodoList 
-          todos={completedTodos}
-          onToggle={toggleTodo}
-          onDelete={deleteTodo}
-        />
-      )}
-    </SafeAreaView>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -70,3 +45,29 @@ const styles = StyleSheet.create({
     color: '#ccc',
   },
 });
+
+
+export default function CompletedTodosScreen() {
+  const { completedTodos, toggleTodo, deleteTodo } = useTodoContext();
+  
+  return (
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Completed Todos</Text>
+        <Text style={styles.subtitle}>{completedTodos.length} completed</Text>
+      </View>
+      {isTodoListEmpty(completedTodos) ? (
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>No completed todos yet!</Text>
+          <Text style={styles.emptySubtext}>Check off some todos to see them here</Text>
+        </View>
+      ) : (
+        <TodoList 
+          todos={completedTodos}
+          onToggle={toggleTodo}
+          onDelete={deleteTodo}
+        />
+      )}
+    </SafeAreaView>
+  );
+}

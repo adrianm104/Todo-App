@@ -2,39 +2,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Todo } from '@/hooks/useTodos';
 import { isTodoCompleted } from '@/components/ui/utils/todoDomain';
 
-interface TodoItemProps {
-    todo: Todo;
-    onToggle: (id: string) => void;
-    onDelete: (id: string) => void;
-}
-
-export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
-    const completed = isTodoCompleted(todo);
-    
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity 
-                style={styles.checkboxContainer} 
-                onPress={() => onToggle(todo.id)}
-            >
-                <View style={[styles.checkbox, completed && styles.checkboxChecked]}>
-                    {todo.completed && <Text style={styles.checkmark}>✓</Text>}
-                </View>
-            </TouchableOpacity>
-
-            <Text style={[styles.text, completed && styles.textCompleted]}>
-                {todo.text}
-            </Text>
-
-            <TouchableOpacity 
-                onPress={() => onDelete(todo.id)} 
-                style={styles.deleteButton}
-            >
-                <Text style={styles.deleteText}>✕</Text>
-            </TouchableOpacity>
-        </View>
-    );
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -83,3 +50,36 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 });
+interface TodoItemProps {
+    todo: Todo;
+    onToggle: (id: string) => void;
+    onDelete: (id: string) => void;
+}
+
+export function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
+    const completed = isTodoCompleted(todo);
+    
+    return (
+        <View style={styles.container}>
+            <TouchableOpacity 
+                style={styles.checkboxContainer} 
+                onPress={() => onToggle(todo.id)}
+            >
+                <View style={[styles.checkbox, completed && styles.checkboxChecked]}>
+                    {todo.completed && <Text style={styles.checkmark}>✓</Text>}
+                </View>
+            </TouchableOpacity>
+
+            <Text style={[styles.text, completed && styles.textCompleted]}>
+                {todo.text}
+            </Text>
+
+            <TouchableOpacity 
+                onPress={() => onDelete(todo.id)} 
+                style={styles.deleteButton}
+            >
+                <Text style={styles.deleteText}>✕</Text>
+            </TouchableOpacity>
+        </View>
+    );
+}

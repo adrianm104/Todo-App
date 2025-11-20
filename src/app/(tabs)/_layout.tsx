@@ -6,11 +6,13 @@ import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { TodoProvider } from '@/contexts/TodoContext';
+import { RealmProvider } from '@/contexts/RealmContext';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
+    <RealmProvider>
     <TodoProvider>
       <Tabs
         screenOptions={{
@@ -26,14 +28,14 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="completedTodos"
+          name="CompletedTodos"
           options={{
             title: 'Completed',
             tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
           }}
         />
         <Tabs.Screen
-          name="profile"
+          name="Profile"
           options={{
             title: 'Profile',
             tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
@@ -41,5 +43,6 @@ export default function TabLayout() {
         />
       </Tabs>
     </TodoProvider>
+    </RealmProvider>
   );
 }
