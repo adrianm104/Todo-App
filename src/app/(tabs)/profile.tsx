@@ -2,28 +2,6 @@ import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 
-
-export default function ProfileScreen() {
-
-  return (
-    <SafeAreaView style={styles.container} edges={['top']}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Profile</Text>
-      </View>
-      <Image source={require('@/assets/images/profilepic.png')} style={styles.profilePicture} />
-      <View style={styles.profileContainer}>
-        <Text style={styles.name}>Adrian Macias</Text>
-        <Text style={styles.email}>adrianmacias255.am@gmail.com</Text>
-        <Text style={styles.bio}> Greetings Everyone! {'\n'} {'\n'} I am Adrian Macias, a rookie React Native developer, making this app as a learning project to improve my skills. I am a current student at the University of Texas at Arlington. 
-          I am actively pursuing a Bachelors degree in Computer Science. My interests include web development, mobile development. My goal is to become a software engineer and work on building web and mobile applications and maintaining
-          good quality code. This is also my first time using React Native and Expo, so I am learning as I go, may add more features to the app as I learn more.
-        </Text>
-      </View>
-
-    </SafeAreaView>
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -101,3 +79,25 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+
+export default function ProfileScreen() {
+
+  return (
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Profile</Text>
+      </View>
+      <Image source={require('@/assets/images/profilepic.png')} style={styles.profilePicture} />
+      <View style={styles.profileContainer}>
+        <Text style={styles.name}>Adrian Macias</Text>
+        <Text style={styles.email}>adrianmacias255.am@gmail.com</Text>
+        <Text style={styles.bio}> Greetings Everyone! {'\n'} {'\n'} I am Adrian Macias, a rookie React Native developer, making this app as a learning project to improve my skills. I am a current student at the University of Texas at Arlington. 
+          I am actively pursuing a Bachelors degree in Computer Science. My interests include web development, mobile development. My goal is to become a software engineer and work on building web and mobile applications and maintaining
+          good quality code. This is also my first time using React Native and Expo, so I am learning as I go, may add more features to the app as I learn more.
+        </Text>
+      </View>
+
+    </SafeAreaView>
+  );
+}
