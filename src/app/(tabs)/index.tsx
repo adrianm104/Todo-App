@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { TodoList } from '@/components/Todo/TodoList';
-import { AddTodoForm } from '@/components/Todo/AddTodoForm';
-import { useTodoContext } from '@/contexts/TodoContext';
+import { TodoList } from '@/features/todos/components/Todo/TodoList';
+import { AddTodoForm } from '@/features/todos/components/Todo/AddTodoForm';
+import { useTodoContext } from '@/core/ui/providers/TodoContext';
 
 
 const styles = StyleSheet.create({

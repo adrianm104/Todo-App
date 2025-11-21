@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { Realm } from 'realm';
-import { realmConfig } from '@/models/TodoSchema';
+import { realmConfig } from '@/core/data/database/entity/TodoSchema';
 
 interface RealmContextType {
   realm: Realm | null;

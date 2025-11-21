@@ -1,4 +1,4 @@
-import { Todo } from '@/hooks/useTodos';
+import { Todo } from '@/features/todos/data/useTodos';
 
 export function isTodoCompleted(todo: Todo): boolean {
   return todo.completed;

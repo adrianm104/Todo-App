@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useRealm } from "@/contexts/RealmContext";
-import { TodoSchema } from "@/models/TodoSchema";
-import { isValidTodoText, isTodoActive, isTodoCompleted } from "@/components/ui/utils/todoDomain";
+import { useRealm } from "@/core/ui/providers/RealmContext";
+import { TodoSchema } from "@/core/data/database/entity/TodoSchema";
+import { isValidTodoText, isTodoActive, isTodoCompleted } from "@/core/domain/todoDomain";
 
 
 export interface Todo {

@@ -2,9 +2,9 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-import { RealmProvider } from '@/contexts/RealmContext';
-import { TodoProvider } from '@/contexts/TodoContext';
+import { useColorScheme } from '@/core/ui/hooks/use-color-scheme';
+import { RealmProvider } from '@/core/ui/providers/RealmContext';
+import { TodoProvider } from '@/core/ui/providers/TodoContext';
 
 export const unstable_settings = {
   anchor: '(tabs)',
